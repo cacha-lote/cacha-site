@@ -140,8 +140,9 @@ function montarTabela() {
 // ---------------------------------------------------------------------
 // 3. CALCULADORA RÁPIDA
 // O cliente escolhe o tipo, a quantidade de folhas e se é frente e verso.
-// Conta: impressões = folhas (x2 se frente e verso) x preço por lado.
-// Se passar de 20 folhas, aplica 10% de desconto (valores do config.js).
+// Conta: páginas impressas = folhas (x2 se frente e verso) x preço por lado.
+// Se passar de 20 PÁGINAS impressas, aplica 10% de desconto (config.js).
+// Ex.: 15 folhas frente e verso = 30 páginas -> ganha o desconto.
 // ---------------------------------------------------------------------
 function montarCalculadora() {
   const form = document.getElementById("calculadora");
@@ -178,7 +179,7 @@ function montarCalculadora() {
     const impressoes = frenteVerso ? folhas * 2 : folhas;
 
     const subtotal = impressoes * item.preco;
-    const temDesconto = folhas > CONFIG.descontoAcimaDeFolhas;
+    const temDesconto = impressoes > CONFIG.descontoAcimaDePaginas;
     const desconto = temDesconto ? subtotal * (CONFIG.descontoPercentual / 100) : 0;
     // Arredonda para centavos (evita coisas como 22,499999)
     const total = Math.round((subtotal - desconto) * 100) / 100;
@@ -188,9 +189,9 @@ function montarCalculadora() {
     let detalhe = impressoes + (impressoes === 1 ? " impressão" : " impressões") + " × " + formatarReais(item.preco);
     if (temDesconto) {
       detalhe += " = " + formatarReais(subtotal) + ", com " + CONFIG.descontoPercentual + "% de desconto";
-    } else if (folhas > 0) {
-      const faltam = CONFIG.descontoAcimaDeFolhas + 1 - folhas;
-      detalhe += ". Com mais " + faltam + (faltam === 1 ? " folha" : " folhas") + " você ganha " + CONFIG.descontoPercentual + "% de desconto.";
+    } else if (impressoes > 0) {
+      const faltam = CONFIG.descontoAcimaDePaginas + 1 - impressoes;
+      detalhe += ". Com mais " + faltam + (faltam === 1 ? " página" : " páginas") + " você ganha " + CONFIG.descontoPercentual + "% de desconto.";
     }
     saidaDetalhe.textContent = detalhe;
 

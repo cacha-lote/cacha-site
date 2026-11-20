@@ -95,7 +95,7 @@ em [webaim.org/resources/contrastchecker](https://webaim.org/resources/contrastc
 
 - Os textos das promoções, "Como pedir", "O que imprimimos" e "Bom saber" ficam
   direto no `index.html`.
-- A regra do desconto que a calculadora usa (10% acima de 20 folhas) fica em
+- A regra do desconto que a calculadora usa (10% acima de 20 páginas impressas) fica em
   `js/config.js`. Se mudar a promoção, mude nos dois lugares.
 
 ---
@@ -112,9 +112,9 @@ em [webaim.org/resources/contrastchecker](https://webaim.org/resources/contrastc
 1. Source Control (Ctrl+Shift+G) → **Publish Branch** → **public repository** → nome `cacha`.
 2. No GitHub: repositório → **Settings** → **Pages** → Source: **Deploy from a branch**,
    branch **main**, pasta **/(root)** → **Save**.
-3. Em 1 a 2 minutos o site fica em `https://SEUUSUARIO.github.io/cacha/`.
-4. No `index.html`, troque `SEUUSUARIO` pelo seu usuário nas linhas `og:url` e
-   `og:image`, faça commit e Sync. Sem isso, a prévia do link no WhatsApp fica sem imagem.
+3. Em 1 a 2 minutos o site fica em `https://cacha-lote.github.io/cacha/`.
+4. Se um dia mudar o endereço (outro usuário ou domínio próprio), troque também as
+   linhas `og:url` e `og:image` do `index.html`. Sem isso, a prévia do link no WhatsApp fica sem imagem.
 
 Para atualizar depois: mude o arquivo, faça commit, clique em **Sync Changes**.
 Em cerca de 1 minuto o site no ar muda.

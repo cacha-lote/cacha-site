@@ -30,7 +30,8 @@ const CONFIG = {
   whatsappExibicao: "(62) 99835-6264",
   mensagemPadrao: "Olá! Vim pelo site e quero fazer um pedido.",
 
-  // Promoção: 10% de desconto acima de 20 folhas no mesmo pedido.
+  // Promoção: 10% de desconto acima de 20 páginas impressas no mesmo pedido.
+  // (cada lado impresso conta: 1 folha frente e verso = 2 páginas)
   descontoPercentual: 10,
-  descontoAcimaDeFolhas: 20,
+  descontoAcimaDePaginas: 20,
 };
