@@ -46,8 +46,9 @@
   <meta property="og:image:alt" content="CACHA: impressões, fotos, plastificação e serviços. Pedidos pelo WhatsApp.">
   <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Ícone que aparece na aba do navegador -->
-  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <!-- Ícone da aba do navegador e do atalho na tela inicial do celular -->
+  <link rel="icon" href="img/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 
   <!-- Fonte Inter, do Google Fonts (a mesma "cara" da tabela impressa) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -66,7 +67,9 @@
   <header class="topo">
     <div class="container topo__conteudo">
       <a class="marca" href="#inicio" aria-label="Início">
-        <span class="marca__icone" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <!-- Logo provisória. Para trocar, substitua o arquivo img/logo.png
+             (de preferência quadrado e com fundo transparente). -->
+        <img class="marca__logo" src="img/logo.png" alt="" width="40" height="40">
         <span data-marca>CACHA</span>
       </a>
       <a class="botao botao--pequeno" data-whatsapp href="https://wa.me/5562998356264">Pedir</a>

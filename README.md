@@ -20,7 +20,9 @@ cacha-site/
 │   ├── precos.js     → TODOS os preços e serviços
 │   └── app.js        → o "motor": monta a tabela e a calculadora
 ├── img/
-│   ├── favicon.svg   → ícone da aba do navegador
+│   ├── logo.png      → logo da marca (topo do site)
+│   ├── favicon.png   → ícone da aba do navegador
+│   ├── apple-touch-icon.png → ícone do atalho no celular
 │   └── og-imagem.png → imagem da prévia quando o link é compartilhado
 ├── referencia/       → PDF e imagens da tabela impressa (NÃO vai para o GitHub)
 ├── CLAUDE.md         → memória do projeto, lida pelo Claude Code
@@ -70,6 +72,13 @@ aba Console: o erro mostra a linha do problema.
 Por que dois lugares? O WhatsApp e o Google leem o HTML **sem rodar o
 JavaScript**. Então o que aparece na prévia do link tem que estar escrito
 direto no HTML.
+
+## Como trocar a LOGO
+
+Substitua o arquivo `img/logo.png` por outro com o **mesmo nome** (de preferência
+quadrado, com fundo transparente). Para o ícone da aba e a prévia do WhatsApp,
+peça ao Claude Code: "gere de novo o favicon, o apple-touch-icon e a og-imagem
+a partir da logo nova".
 
 ## Como mudar o TELEFONE
 
