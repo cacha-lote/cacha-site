@@ -1,0 +1,15 @@
+# .gitignore: lista de arquivos e pastas que o Git deve IGNORAR,
+# ou seja, que não vão para o GitHub (o repositório é público).
+
+# Material de referência (PDF e imagens da tabela impressa).
+# Fica só no seu computador, para consulta.
+referencia/
+
+# Arquivos que o Windows e o Mac criam sozinhos
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Configurações pessoais do VS Code e do Claude Code
+.vscode/
+.claude/settings.local.json

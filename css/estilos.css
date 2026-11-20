@@ -1,0 +1,350 @@
+/*
+  =====================================================================
+  ESTILOS.CSS — A APARÊNCIA DO SITE
+  =====================================================================
+  CSS funciona assim:  seletor { propriedade: valor; }
+    ex.:  .botao { color: white; }  =  "todo elemento com a classe
+    botao fica com texto branco".
+
+  "Mobile first": os estilos de base são para o CELULAR. Mais embaixo,
+  os blocos @media (min-width: ...) ajustam para telas maiores.
+  =====================================================================
+*/
+
+/* ---------------------------------------------------------------------
+   1. VARIÁVEIS (TROQUE AQUI AS CORES DA MARCA)
+   Variáveis CSS começam com -- e ficam no :root (a raiz da página).
+   Em qualquer lugar usamos var(--nome). Mudou aqui, muda em tudo.
+   As cores abaixo vieram da tabela impressa (frente.png e verso.png).
+   --------------------------------------------------------------------- */
+:root {
+  /* Cores principais */
+  --cor-escura: #1f1f24;        /* quase preto: textos e fundos escuros */
+  --cor-texto: #1f1f24;
+  --cor-texto-suave: #55555f;   /* textos secundários (contraste ok) */
+  --cor-fundo: #ffffff;
+  --cor-fundo-claro: #f6f4ef;   /* bege bem clarinho das seções alternadas */
+  --cor-borda: #1f1f24;
+
+  /* Cores de destaque (as barrinhas e ícones) */
+  --cor-azul: #2f5bd9;
+  --cor-verde: #138a69;
+  --cor-rosa: #d63f7f;
+  --cor-laranja: #e2582a;
+  --cor-roxo: #7a5ad6;
+  --cor-amarelo: #f5b83d;
+
+  /* Botão do WhatsApp (verde escurecido para o ícone branco ter contraste) */
+  --cor-whatsapp: #1f8f4e;
+  --cor-whatsapp-escuro: #17733e;
+
+  /* Letras */
+  --fonte: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  /* Medidas */
+  --raio: 14px;                 /* arredondamento dos cantos */
+  --largura-max: 1080px;        /* largura máxima do conteúdo */
+  --espaco: 16px;               /* margem lateral no celular */
+}
+
+/* ---------------------------------------------------------------------
+   2. BASE
+   --------------------------------------------------------------------- */
+/* box-sizing: border-box faz a largura incluir borda e espaçamento,
+   o que deixa as contas de tamanho muito mais fáceis. */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--fonte);
+  font-size: 1.0625rem;         /* 17px: confortável no celular */
+  line-height: 1.55;
+  color: var(--cor-texto);
+  background: var(--cor-fundo);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, p { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+a { color: inherit; }
+
+/* Contorno visível ao navegar pelo teclado (acessibilidade) */
+:focus-visible { outline: 3px solid var(--cor-azul); outline-offset: 3px; }
+
+/* .container centraliza o conteúdo e deixa uma margem nas laterais */
+.container {
+  width: 100%;
+  max-width: var(--largura-max);
+  margin: 0 auto;
+  padding: 0 var(--espaco);
+}
+
+/* Link "pular para os preços": escondido até receber foco do teclado */
+.pular {
+  position: absolute; left: -9999px; top: 8px;
+  background: var(--cor-escura); color: #fff; padding: 10px 14px; border-radius: 8px; z-index: 100;
+}
+.pular:focus { left: 8px; }
+
+/* Ligação entre data-cor="..." no HTML e as variáveis de cor.
+   Cada elemento com data-cor ganha a variável --destaque. */
+[data-cor="azul"]    { --destaque: var(--cor-azul); }
+[data-cor="verde"]   { --destaque: var(--cor-verde); }
+[data-cor="rosa"]    { --destaque: var(--cor-rosa); }
+[data-cor="laranja"] { --destaque: var(--cor-laranja); }
+[data-cor="roxo"]    { --destaque: var(--cor-roxo); }
+[data-cor="amarelo"] { --destaque: var(--cor-amarelo); }
+[data-cor="escuro"]  { --destaque: var(--cor-escura); }
+
+/* ---------------------------------------------------------------------
+   3. BOTÕES
+   min-height de 52px deixa o botão grande o bastante para o dedo.
+   --------------------------------------------------------------------- */
+.botao {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 52px; padding: 12px 22px;
+  border-radius: 999px; border: 2px solid transparent;
+  font-weight: 700; font-size: 1.0625rem; text-decoration: none;
+  transition: transform .15s, background-color .15s;
+}
+.botao:active { transform: scale(.98); }
+.botao--whatsapp { background: var(--cor-whatsapp); color: #fff; }
+.botao--whatsapp:hover { background: var(--cor-whatsapp-escuro); }
+.botao--contorno { border-color: var(--cor-borda); background: transparent; }
+.botao--contorno:hover { background: var(--cor-escura); color: #fff; }
+.botao--pequeno { min-height: 44px; padding: 8px 18px; background: var(--cor-whatsapp); color: #fff; font-size: 1rem; }
+.botao--largo { width: 100%; }
+.icone { width: 22px; height: 22px; flex-shrink: 0; }
+
+/* ---------------------------------------------------------------------
+   4. TOPO
+   position: sticky faz o topo "grudar" no alto ao rolar a página.
+   --------------------------------------------------------------------- */
+.topo {
+  position: sticky; top: 0; z-index: 20;
+  background: rgba(255, 255, 255, .94);
+  backdrop-filter: blur(8px);
+  border-bottom: 2px solid var(--cor-escura);
+}
+.topo__conteudo { display: flex; align-items: center; justify-content: space-between; min-height: 64px; }
+.marca { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.375rem; letter-spacing: -.02em; text-decoration: none; }
+
+/* Os 4 quadradinhos coloridos (lembram os da tabela impressa) */
+.marca__icone { display: grid; grid-template-columns: repeat(2, 12px); gap: 3px; }
+.marca__icone i { width: 12px; height: 12px; border-radius: 3px; }
+.marca__icone i:nth-child(1) { background: var(--cor-verde); }
+.marca__icone i:nth-child(2) { background: var(--cor-roxo); }
+.marca__icone i:nth-child(3) { background: var(--cor-rosa); }
+.marca__icone i:nth-child(4) { background: var(--cor-amarelo); }
+
+/* ---------------------------------------------------------------------
+   5. APRESENTAÇÃO (primeira parte da página)
+   clamp(mínimo, ideal, máximo) faz o título crescer com a tela.
+   --------------------------------------------------------------------- */
+.apresentacao { padding: 40px 0 48px; }
+.selo {
+  display: inline-block; background: var(--cor-escura); color: #fff;
+  padding: 8px 16px; border-radius: 10px; font-weight: 800; text-transform: uppercase; font-size: .95rem;
+}
+.selo span { color: var(--cor-amarelo); letter-spacing: .12em; font-size: .8rem; margin-right: 4px; }
+.apresentacao__titulo {
+  margin-top: 20px;
+  font-size: clamp(2.1rem, 8vw, 4rem); line-height: 1.05; font-weight: 800; letter-spacing: -.035em;
+}
+.apresentacao__texto { margin-top: 16px; font-size: 1.125rem; color: var(--cor-texto-suave); max-width: 36em; }
+.apresentacao__botoes { margin-top: 28px; display: flex; flex-direction: column; gap: 12px; }
+
+/* ---------------------------------------------------------------------
+   6. SEÇÕES E TÍTULOS
+   --------------------------------------------------------------------- */
+.secao { padding: 48px 0; }
+.secao--clara { background: var(--cor-fundo-claro); }
+.secao--escura { background: var(--cor-escura); color: #fff; }
+.secao__intro { margin: -8px 0 24px; color: var(--cor-texto-suave); }
+
+/* Título com a barrinha colorida na frente (::before cria um "enfeite"
+   sem precisar de um elemento a mais no HTML) */
+.titulo-secao {
+  display: flex; align-items: center; gap: 12px;
+  font-size: clamp(1.6rem, 5.5vw, 2.25rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.1;
+  text-transform: uppercase; margin-bottom: 24px;
+}
+.titulo-secao::before {
+  content: ""; width: 10px; align-self: stretch; min-height: 1.1em;
+  border-radius: 4px; background: var(--destaque, var(--cor-escura));
+}
+.secao--escura .titulo-secao[data-cor="escuro"]::before { background: #fff; }
+.titulo-secao--pequeno { font-size: 1.4rem; margin-bottom: 0; }
+
+/* ---------------------------------------------------------------------
+   7. TABELA DE PREÇOS (montada pelo app.js)
+   --------------------------------------------------------------------- */
+.tabela-precos { display: grid; gap: 40px; }
+.categoria__cabecalho { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; margin-bottom: 16px; }
+.categoria__nota { color: var(--cor-texto-suave); font-weight: 500; font-size: .95rem; }
+
+/* R$ pequeno e no alto, igual à tabela impressa */
+.preco__moeda { font-size: .5em; font-weight: 700; vertical-align: .75em; margin-right: 2px; }
+.preco--combinar { font-weight: 700; }
+
+/* Formato "cartoes": impressões A4 */
+.categoria--cartoes .itens { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.categoria--cartoes .item {
+  display: flex; flex-direction: column; justify-content: space-between; gap: 12px;
+  border: 2px solid var(--cor-borda); border-top: 8px solid var(--cor-azul);
+  border-radius: var(--raio); padding: 14px;
+}
+.categoria--cartoes .item__textos { display: flex; flex-direction: column; }
+.categoria--cartoes .item__nome { font-weight: 700; font-size: 1.05rem; line-height: 1.25; }
+.categoria--cartoes .item__detalhe { color: var(--cor-texto-suave); font-size: .9rem; }
+.categoria--cartoes .item__preco { font-size: 2.1rem; font-weight: 800; letter-spacing: -.04em; line-height: 1; }
+
+/* Formato "lista": nome ..... preço */
+.categoria--lista .item { display: flex; align-items: flex-end; gap: 8px; padding: 12px 0; border-bottom: 1px solid #e6e3dc; }
+.categoria--lista .item:last-child { border-bottom: 0; }
+.categoria--lista .item__textos { display: flex; flex-direction: column; min-width: 0; }
+.categoria--lista .item__nome { font-size: 1.0625rem; line-height: 1.3; }
+.categoria--lista .item__detalhe { color: var(--cor-texto-suave); font-size: .9rem; }
+.item__pontos { flex: 1; min-width: 16px; border-bottom: 2px dotted #b9b6ad; margin-bottom: 7px; }
+.categoria--lista .item__preco { font-size: 1.35rem; font-weight: 800; white-space: nowrap; }
+
+/* Aviso de frente e verso */
+.aviso { margin-top: 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.aviso__etiqueta {
+  background: var(--cor-amarelo); color: var(--cor-escura);
+  padding: 4px 12px; border-radius: 999px; font-size: .8rem; text-transform: uppercase; letter-spacing: .06em;
+}
+
+/* ---------------------------------------------------------------------
+   8. CALCULADORA
+   --------------------------------------------------------------------- */
+.calculadora {
+  background: #fff; border: 2px solid var(--cor-borda); border-radius: var(--raio);
+  padding: 20px; display: grid; gap: 18px; max-width: 560px;
+}
+.campo { display: grid; gap: 6px; }
+.campo label { font-weight: 700; }
+.campo select, .campo input {
+  width: 100%; min-height: 52px; padding: 10px 14px;
+  font: inherit; color: inherit; background: #fff;
+  border: 2px solid var(--cor-borda); border-radius: 10px;
+}
+.campo-marcar { display: flex; align-items: center; gap: 12px; cursor: pointer; min-height: 44px; }
+.campo-marcar input { width: 26px; height: 26px; accent-color: var(--cor-azul); flex-shrink: 0; }
+.campo-marcar small { color: var(--cor-texto-suave); }
+.calculadora__resultado { background: var(--cor-fundo-claro); border-radius: 10px; padding: 16px; }
+.calculadora__rotulo { font-size: .85rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--cor-texto-suave); }
+.calculadora__total { font-size: 2.5rem; font-weight: 800; letter-spacing: -.03em; line-height: 1.1; }
+.calculadora__detalhe { color: var(--cor-texto-suave); font-size: .95rem; margin-top: 4px; }
+
+/* ---------------------------------------------------------------------
+   9. PROMOÇÕES
+   --------------------------------------------------------------------- */
+.promocoes { display: grid; gap: 14px; }
+.promo { border: 2px dashed var(--cor-borda); border-radius: var(--raio); padding: 20px; }
+.promo__numero { color: var(--destaque); font-size: 4rem; font-weight: 800; letter-spacing: -.06em; line-height: 1; }
+.promo__numero small { font-size: .45em; letter-spacing: -.02em; margin-left: 4px; }
+.promo__titulo { font-size: 1.2rem; font-weight: 800; margin: 10px 0 4px; }
+.promo p:last-child { color: var(--cor-texto-suave); }
+.promocoes__exemplo { margin-top: 14px; color: var(--cor-texto-suave); }
+
+/* ---------------------------------------------------------------------
+   10. COMO PEDIR
+   --------------------------------------------------------------------- */
+.passos { display: grid; gap: 18px; margin-bottom: 28px; }
+.passo { display: flex; align-items: center; gap: 16px; font-size: 1.125rem; }
+.passo__numero {
+  flex-shrink: 0; width: 48px; height: 48px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--destaque); color: #fff; font-weight: 800; font-size: 1.4rem;
+}
+
+/* ---------------------------------------------------------------------
+   11. O QUE IMPRIMIMOS
+   --------------------------------------------------------------------- */
+.exemplos { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.exemplos li {
+  display: flex; align-items: center; gap: 10px;
+  border: 2px solid var(--cor-borda); border-radius: 12px; padding: 12px; font-weight: 700; line-height: 1.2;
+}
+.exemplos li::before { content: ""; width: 20px; height: 20px; flex-shrink: 0; border-radius: 5px; background: var(--destaque); }
+.faixa {
+  margin-top: 16px; background: var(--cor-escura); color: #fff; border-radius: var(--raio);
+  padding: 20px; display: grid; gap: 16px;
+}
+.faixa strong { color: var(--cor-amarelo); }
+
+/* ---------------------------------------------------------------------
+   12. BOM SABER
+   --------------------------------------------------------------------- */
+.saber { display: grid; gap: 20px; }
+.saber li { display: grid; grid-template-columns: 40px 1fr; gap: 2px 14px; }
+.saber li::before { content: ""; grid-row: span 2; width: 40px; height: 40px; border-radius: 10px; background: var(--destaque); }
+.saber h3, .saber p { grid-column: 2; }
+.saber h3 { font-size: 1.125rem; font-weight: 800; }
+.saber p { color: var(--cor-texto-suave); }
+
+/* ---------------------------------------------------------------------
+   13. RODAPÉ
+   padding-bottom maior para o botão fixo não cobrir o texto.
+   --------------------------------------------------------------------- */
+.rodape { background: var(--cor-escura); color: #fff; padding: 40px 0 110px; }
+.rodape__rotulo { text-transform: uppercase; letter-spacing: .12em; font-size: .85rem; font-weight: 700; color: #c9c7c0; }
+.rodape__telefone { display: inline-block; font-size: clamp(2rem, 9vw, 3.25rem); font-weight: 800; letter-spacing: -.04em; text-decoration: none; margin: 4px 0 16px; }
+.rodape__telefone:hover { text-decoration: underline; }
+.rodape__copy { color: #c9c7c0; font-size: .95rem; }
+
+/* ---------------------------------------------------------------------
+   14. BOTÃO FIXO DO WHATSAPP
+   position: fixed prende o botão num lugar da TELA (não da página).
+   env(safe-area-inset-bottom) desvia da barra do iPhone.
+   --------------------------------------------------------------------- */
+.whatsapp-fixo {
+  position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 50;
+  width: 64px; height: 64px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--cor-whatsapp); color: #fff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .25);
+  transition: transform .15s;
+}
+.whatsapp-fixo:hover { transform: scale(1.06); background: var(--cor-whatsapp-escuro); }
+.whatsapp-fixo svg { width: 34px; height: 34px; }
+
+/* ---------------------------------------------------------------------
+   15. TELAS MAIORES (tablet e computador)
+   @media (min-width: 700px) = "só aplica se a tela tiver 700px ou mais".
+   --------------------------------------------------------------------- */
+@media (min-width: 700px) {
+  :root { --espaco: 32px; }
+  .apresentacao { padding: 72px 0 80px; }
+  .apresentacao__botoes { flex-direction: row; }
+  .secao { padding: 72px 0; }
+  .categoria--cartoes .itens { grid-template-columns: repeat(4, 1fr); }
+  .categoria--cartoes .item { padding: 18px; }
+  .categoria--cartoes .item__preco { font-size: 2.6rem; }
+  .promocoes { grid-template-columns: repeat(3, 1fr); }
+  .exemplos { grid-template-columns: repeat(3, 1fr); }
+  .faixa { grid-template-columns: 1fr auto; align-items: center; }
+  .saber { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+  .passos { grid-template-columns: repeat(3, 1fr); }
+  .passo { flex-direction: column; align-items: flex-start; }
+  #como-pedir .botao--largo { width: auto; }
+}
+
+@media (min-width: 960px) {
+  /* No computador, plastificação, fotos e serviços ficam lado a lado */
+  .tabela-precos { grid-template-columns: 1fr 1fr; column-gap: 56px; }
+  #precos-impressoes { grid-column: 1 / -1; }
+  /* Esquerda: plastificação. Direita: fotos e, embaixo, serviços. */
+  #precos-plastificacao { grid-column: 1; grid-row: 2 / span 2; }
+  #precos-fotos, #precos-servicos { grid-column: 2; }
+  .saber { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Quem pediu ao sistema "menos movimento" não vê animações */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}

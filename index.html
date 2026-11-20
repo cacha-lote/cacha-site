@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<!--
+  =====================================================================
+  INDEX.HTML — A ESTRUTURA DA PÁGINA
+  =====================================================================
+  O HTML diz O QUE existe na página (títulos, textos, botões).
+  O CSS (css/estilos.css) diz COMO fica a aparência.
+  O JavaScript (js/*.js) faz as partes que mudam: monta a tabela de
+  preços e a calculadora.
+
+  A página tem estas seções, de cima para baixo:
+    topo -> apresentação -> preços -> calculadora -> promoções ->
+    como pedir -> o que imprimimos -> bom saber -> rodapé
+  =====================================================================
+-->
+<html lang="pt-BR">
+<head>
+  <!-- Diz ao navegador que o texto usa acentos do jeito moderno (UTF-8) -->
+  <meta charset="UTF-8">
+  <!-- Faz a página caber na largura do celular, sem precisar de zoom -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--
+    SEO: título e descrição que aparecem no Google.
+    Se trocar o nome da marca, troque aqui também.
+  -->
+  <title>CACHA | Impressões, fotos e plastificação</title>
+  <meta name="description" content="Tabela de preços de impressões A4, fotos, plastificação e serviços como currículo e digitação. Pedidos pelo WhatsApp (62) 99835-6264. Atendemos todos os dias.">
+  <meta name="theme-color" content="#1f1f24">
+
+  <!--
+    OPEN GRAPH: é o que o WhatsApp, Instagram e Facebook leem para
+    montar a "prévia" bonita quando alguém compartilha o link.
+    IMPORTANTE: og:image e og:url precisam do endereço COMPLETO do site.
+    Depois de publicar, troque SEUUSUARIO pelo seu usuário do GitHub.
+  -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="CACHA">
+  <meta property="og:title" content="CACHA | Impressões, fotos e plastificação">
+  <meta property="og:description" content="Veja a tabela de preços e peça pelo WhatsApp. Atendemos todos os dias.">
+  <meta property="og:url" content="https://SEUUSUARIO.github.io/cacha/">
+  <meta property="og:image" content="https://SEUUSUARIO.github.io/cacha/img/og-imagem.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="CACHA: impressões, fotos, plastificação e serviços. Pedidos pelo WhatsApp.">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Ícone que aparece na aba do navegador -->
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+
+  <!-- Fonte Inter, do Google Fonts (a mesma "cara" da tabela impressa) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <!-- Nosso arquivo de estilos -->
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <!-- Link escondido que aparece ao navegar pelo teclado (acessibilidade) -->
+  <a class="pular" href="#precos">Pular para os preços</a>
+
+  <!-- ============ TOPO ============ -->
+  <header class="topo">
+    <div class="container topo__conteudo">
+      <a class="marca" href="#inicio" aria-label="Início">
+        <span class="marca__icone" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span data-marca>CACHA</span>
+      </a>
+      <a class="botao botao--pequeno" data-whatsapp href="https://wa.me/5562998356264">Pedir</a>
+    </div>
+  </header>
+
+  <main id="inicio">
+
+    <!-- ============ APRESENTAÇÃO ============ -->
+    <section class="apresentacao">
+      <div class="container">
+        <p class="selo"><span>Atendemos</span> todos os dias</p>
+        <h1 class="apresentacao__titulo">Impressões, fotos, plastificação e serviços</h1>
+        <p class="apresentacao__texto">Mande o arquivo pelo WhatsApp, a gente imprime e você retira. Pague no Pix ou dinheiro.</p>
+        <div class="apresentacao__botoes">
+          <a class="botao botao--whatsapp" data-whatsapp href="https://wa.me/5562998356264">
+            <svg class="icone" aria-hidden="true" viewBox="0 0 24 24"><use href="#icone-whatsapp"></use></svg>
+            Pedir no WhatsApp
+          </a>
+          <a class="botao botao--contorno" href="#precos">Ver preços</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PREÇOS ============ -->
+    <!-- A div #tabela-precos começa vazia. O app.js preenche com o precos.js -->
+    <section class="secao" id="precos" aria-labelledby="titulo-precos">
+      <div class="container">
+        <h2 class="titulo-secao" id="titulo-precos" data-cor="escuro">Tabela de preços</h2>
+        <div id="tabela-precos" class="tabela-precos"></div>
+        <noscript>
+          <p class="aviso">Para ver os preços, ative o JavaScript do navegador ou chame no WhatsApp: (62) 99835-6264.</p>
+        </noscript>
+      </div>
+    </section>
+
+    <!-- ============ CALCULADORA ============ -->
+    <section class="secao secao--clara" id="calcular" aria-labelledby="titulo-calc">
+      <div class="container">
+        <h2 class="titulo-secao" id="titulo-calc" data-cor="azul">Calcule sua impressão</h2>
+        <p class="secao__intro">Escolha o tipo e a quantidade de folhas. O valor é uma estimativa: a gente confirma pelo WhatsApp.</p>
+
+        <form class="calculadora" id="calculadora">
+          <div class="campo">
+            <label for="calc-tipo">Tipo de impressão</label>
+            <select id="calc-tipo" name="tipo"></select>
+          </div>
+          <div class="campo">
+            <label for="calc-folhas">Quantidade de folhas</label>
+            <input id="calc-folhas" name="folhas" type="number" inputmode="numeric" min="1" step="1" value="1">
+          </div>
+          <label class="campo-marcar" for="calc-frente-verso">
+            <input id="calc-frente-verso" name="frenteVerso" type="checkbox">
+            <span>Frente e verso <small>(cada lado conta como 1 impressão)</small></span>
+          </label>
+
+          <!-- aria-live avisa leitores de tela quando o valor muda -->
+          <div class="calculadora__resultado" aria-live="polite">
+            <p class="calculadora__rotulo">Valor estimado</p>
+            <p class="calculadora__total" id="calc-total">R$ 0,00</p>
+            <p class="calculadora__detalhe" id="calc-detalhe"></p>
+          </div>
+
+          <a class="botao botao--whatsapp botao--largo" id="calc-pedir" href="https://wa.me/5562998356264">
+            <svg class="icone" aria-hidden="true" viewBox="0 0 24 24"><use href="#icone-whatsapp"></use></svg>
+            Pedir no WhatsApp
+          </a>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============ PROMOÇÕES ============ -->
+    <section class="secao" id="promocoes" aria-labelledby="titulo-promo">
+      <div class="container">
+        <h2 class="titulo-secao" id="titulo-promo" data-cor="amarelo">Promoções</h2>
+        <div class="promocoes">
+          <article class="promo" data-cor="azul">
+            <p class="promo__numero">10<small>%</small></p>
+            <h3 class="promo__titulo">de desconto</h3>
+            <p>Acima de 20 folhas no mesmo pedido.</p>
+          </article>
+          <article class="promo" data-cor="laranja">
+            <p class="promo__numero">10<small>por 9</small></p>
+            <h3 class="promo__titulo">Currículo: leve 10, pague 9</h3>
+            <p>Uma via grátis a cada 10.</p>
+          </article>
+          <article class="promo" data-cor="roxo">
+            <p class="promo__numero">50<small>%</small></p>
+            <h3 class="promo__titulo">Indique um amigo</h3>
+            <p>Ganhe um vale de 50% do valor que seu amigo comprar.</p>
+          </article>
+        </div>
+        <p class="promocoes__exemplo">Exemplo: seu amigo indicado compra R$ 10,00 em impressões e você ganha R$ 5,00 na sua próxima impressão.</p>
+      </div>
+    </section>
+
+    <!-- ============ COMO PEDIR ============ -->
+    <section class="secao secao--escura" id="como-pedir" aria-labelledby="titulo-como">
+      <div class="container">
+        <h2 class="titulo-secao" id="titulo-como" data-cor="amarelo">Como pedir</h2>
+        <!-- <ol> é uma lista numerada -->
+        <ol class="passos">
+          <li class="passo" data-cor="azul">
+            <span class="passo__numero" aria-hidden="true">1</span>
+            <p>Mande o arquivo (ou a foto, ou a ideia) pelo <strong>WhatsApp</strong>.</p>
+          </li>
+          <li class="passo" data-cor="rosa">
+            <span class="passo__numero" aria-hidden="true">2</span>
+            <p>A gente confirma o <strong>valor</strong> e quando fica pronto.</p>
+          </li>
+          <li class="passo" data-cor="verde">
+            <span class="passo__numero" aria-hidden="true">3</span>
+            <p>Pague no <strong>Pix ou dinheiro</strong> e retire.</p>
+          </li>
+        </ol>
+        <a class="botao botao--whatsapp botao--largo" data-whatsapp href="https://wa.me/5562998356264">
+          <svg class="icone" aria-hidden="true" viewBox="0 0 24 24"><use href="#icone-whatsapp"></use></svg>
+          Mandar meu arquivo
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ O QUE IMPRIMIMOS ============ -->
+    <section class="secao" id="exemplos" aria-labelledby="titulo-exemplos">
+      <div class="container">
+        <h2 class="titulo-secao" id="titulo-exemplos" data-cor="escuro">O que imprimimos</h2>
+        <ul class="exemplos">
+          <li data-cor="azul">Certificados</li>
+          <li data-cor="azul">Capas de trabalho</li>
+          <li data-cor="verde">Cartaz de oferta</li>
+          <li data-cor="rosa">Fotos 3×4</li>
+          <li data-cor="rosa">Fotos 10×15</li>
+          <li data-cor="rosa">Prancha de rotina</li>
+          <li data-cor="verde">RG e CPF</li>
+          <li data-cor="verde">Carteirinhas</li>
+          <li data-cor="verde">Crachás</li>
+          <li data-cor="verde">Cardápio</li>
+          <li data-cor="verde">Placas QR code</li>
+          <li data-cor="laranja">Currículo</li>
+        </ul>
+        <div class="faixa">
+          <p><strong>E muito mais!</strong> Não achou? Mande sua ideia no WhatsApp e a gente faz.</p>
+          <a class="botao botao--whatsapp" data-whatsapp href="https://wa.me/5562998356264">Mandar ideia</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BOM SABER ============ -->
+    <section class="secao secao--clara" id="bom-saber" aria-labelledby="titulo-saber">
+      <div class="container">
+        <h2 class="titulo-secao" id="titulo-saber" data-cor="escuro">Bom saber</h2>
+        <ul class="saber">
+          <li data-cor="amarelo">
+            <h3>Todo dia, do acordar ao dormir</h3>
+            <p>A resposta pode demorar um pouquinho, mas chega.</p>
+          </li>
+          <li data-cor="verde">
+            <h3>Arquivos pelo WhatsApp</h3>
+            <p>PDF, Word, foto ou print.</p>
+          </li>
+          <li data-cor="rosa">
+            <h3>Pix ou dinheiro</h3>
+            <p>Aceitamos somente Pix e dinheiro.</p>
+          </li>
+          <li data-cor="azul">
+            <h3>Retirada</h3>
+            <p>Combinada pelo WhatsApp.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ RODAPÉ ============ -->
+  <footer class="rodape">
+    <div class="container">
+      <p class="rodape__rotulo">Pedidos pelo WhatsApp</p>
+      <a class="rodape__telefone" data-whatsapp href="https://wa.me/5562998356264" data-whatsapp-numero>(62) 99835-6264</a>
+      <p class="rodape__copy">© <span data-ano>2026</span> <span data-marca>CACHA</span>. Atendemos todos os dias.</p>
+    </div>
+  </footer>
+
+  <!-- ============ BOTÃO FIXO DO WHATSAPP ============ -->
+  <!-- Fica sempre no canto da tela (o CSS usa position: fixed) -->
+  <a class="whatsapp-fixo" data-whatsapp href="https://wa.me/5562998356264" aria-label="Pedir no WhatsApp">
+    <svg aria-hidden="true" viewBox="0 0 24 24"><use href="#icone-whatsapp"></use></svg>
+  </a>
+
+  <!--
+    Desenho do ícone do WhatsApp (SVG). Fica guardado aqui uma vez e é
+    reaproveitado em todos os botões com <use href="#icone-whatsapp">.
+  -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="icone-whatsapp" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.04 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36a9.42 9.42 0 0 1-1.44-5.02c0-5.2 4.23-9.43 9.44-9.43 2.52 0 4.89.98 6.67 2.77a9.37 9.37 0 0 1 2.76 6.67c0 5.2-4.23 9.43-9.44 9.43zm8.03-17.46A11.27 11.27 0 0 0 12.04.72C5.79.72.7 5.8.7 12.06c0 2 .52 3.95 1.52 5.67L.6 23.6l6.02-1.58a11.32 11.32 0 0 0 5.42 1.38h.01c6.25 0 11.34-5.09 11.34-11.34 0-3.03-1.18-5.88-3.32-8.02z"/>
+    </symbol>
+  </svg>
+
+  <!--
+    Os scripts entram no fim da página, nesta ordem:
+    1. config.js (nome e telefone)  2. precos.js (lista de preços)
+    3. app.js (usa os dois anteriores para montar a página)
+  -->
+  <script src="js/config.js"></script>
+  <script src="js/precos.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
