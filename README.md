@@ -109,10 +109,10 @@ em [webaim.org/resources/contrastchecker](https://webaim.org/resources/contrastc
 
 ## Publicar (GitHub Pages)
 
-1. Source Control (Ctrl+Shift+G) → **Publish Branch** → **public repository** → nome `cacha`.
+1. Source Control (Ctrl+Shift+G) → **Publish Branch** → **public repository** → nome `cacha-site`.
 2. No GitHub: repositório → **Settings** → **Pages** → Source: **Deploy from a branch**,
    branch **main**, pasta **/(root)** → **Save**.
-3. Em 1 a 2 minutos o site fica em `https://cacha-lote.github.io/cacha/`.
+3. Em 1 a 2 minutos o site fica em `https://cacha-lote.github.io/cacha-site/`.
 4. Se um dia mudar o endereço (outro usuário ou domínio próprio), troque também as
    linhas `og:url` e `og:image` do `index.html`. Sem isso, a prévia do link no WhatsApp fica sem imagem.
 
